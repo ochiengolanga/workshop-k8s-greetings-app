@@ -1,4 +1,4 @@
-# Dockerizable Spring Greetings Application
+# Greetings Application
 
 This is a simple demo application demonstrating a Java application's journey from development to production. 
 
