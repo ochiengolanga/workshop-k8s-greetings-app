@@ -6,11 +6,10 @@
 namespace: ns-workshop
 
 image:
-#  registry: docker.io
   # Image name
-  repository: greetings
+  repository: gcr.io/my-lab-247617/greetings
   # Image tag
-  tag: 3.0.0-RELEASE
+  tag: 2.0.0-RELEASE
   # Specify a imagePullPolicy
   pullPolicy: IfNotPresent
 
@@ -21,7 +20,7 @@ fullnameOverride: ""
 
 deployment:
   port: 8080
-  version: v3
+  version: v2
 
 # Setting up replication by specifying number of replicas
 replicaCount: 1

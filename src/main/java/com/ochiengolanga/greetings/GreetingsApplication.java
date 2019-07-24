@@ -25,7 +25,7 @@ public class GreetingsApplication {
 
 		@GetMapping
 		public String sayHello() {
-			return "V1: " + salutation + " The date today is " + new Date();
+			return "V2: " + salutation + " The date today is " + new Date();
 		}
 	}
 

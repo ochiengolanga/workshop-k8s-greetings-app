@@ -91,6 +91,60 @@ greetings-app   NodePort   10.104.188.88   <none>        8080:30245/TCP   19s
 $ minikube service -n ns-workshop greetings-app
 ```
 
+
+#### Switch to production kubernetes context
+```bash
+$ kubectl config get-contexts
+```
+CURRENT   NAME             CLUSTER          AUTHINFO         NAMESPACE
+
+*         gke_my-lab-...   gke_my-lab-...   gke_my-lab-...
+
+          minikube.istio   minikube.istio   minikube.istio   
+
+```bash
+$ kubectl config use-context <context-name>
+```
+
+
+## Helm
+
+### What is helm?
+
+#### Test Deploy
+```bash
+$ helm install ./manifest/helm-charts/greetings --debug --dry-run
+```
+
+#### Deploy
+```bash
+$ helm install ./manifest/helm-charts/greetings
+```
+
+NAME:   yellow-ferret
+LAST DEPLOYED: Wed Jul 24 23:04:14 2019
+NAMESPACE: default
+STATUS: DEPLOYED
+
+RESOURCES:
+==> v1/Service
+NAME                     TYPE       CLUSTER-IP    EXTERNAL-IP  PORT(S)   AGE
+yellow-ferret-greetings  ClusterIP  10.36.12.175  <none>       8080/TCP  1s
+
+==> v1/Deployment
+NAME                     DESIRED  CURRENT  UP-TO-DATE  AVAILABLE  AGE
+yellow-ferret-greetings  1        1        1           0          1s
+
+==> v1/Pod(related)
+NAME                                      READY  STATUS             RESTARTS  AGE
+yellow-ferret-greetings-547b4d5bd9-ns828  0/1    ContainerCreating  0         1s
+
+
+#### Delete helm install
+```bash
+
+```
+
 ## Istio
 
 ### What is istio?
