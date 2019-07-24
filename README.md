@@ -1,6 +1,8 @@
 # Dockerizable Spring Greetings Application
 
-This is a simple demo application presented during NairobiJVM's meetup ["From Development to Production: Deploying Java and Scala Apps on Kubernetes"](https://www.meetup.com/nairobi-jvm/events/258119823). It's comprised of a Spring Boot application that exposes a single API that returns a greeting as a string. Cliche. Right? That needs to find its way to Kubernetes. Not so cliche for a Greetings app. Huh?
+This is a simple demo application demonstrating a Java application's journey from development to production. 
+
+It comprises of a Spring Boot application that exposes a single API endpoint that returns a greeting as a string. Cliche. Right? That needs to find its way to Kubernetes. Not so cliche for a Greetings app. Huh?
 
 ### Packaging to jar
 
@@ -32,7 +34,7 @@ $ docker images
 
 Running a container from the docker image....
 ```bash
-$ docker run --name greetings-app -p 8080:8080 -d nairobijvm/greetings
+$ docker run --name greetings-app -p 8080:8080 -d greetings
 ```
 
 or with an environment variable
@@ -46,7 +48,7 @@ Test application....
 $ curl localhost:8080
 ```
 
-## To developer k8s
+## To developer Kubernetes instance (minikube)
 
 Minikube hack to build image to kubernetes 
 ```bash
@@ -59,31 +61,34 @@ Deploy app to kubernetes on developer machine
 $ kubectl apply -f manifest/vanilla/greetings-application-v1.yaml
 ```
 
-### Get deployments
+#### Get deployments
 ```bash
-$ kubectl get deployments -n nairobijvm
+$ kubectl get deployments -n ns-workshop
 ```
 NAME        READY   UP-TO-DATE   AVAILABLE   AGE
+
 greetings   1/1     1            1           2m26s
 
 
-### Get pods
+#### Get pods
 ```bash
-$ kubectl get pods -n nairobijvm
+$ kubectl get pods -n ns-workshop
 ```
 NAME                         READY   STATUS    RESTARTS   AGE
+
 greetings-6b7c4bbf77-jnbvx   1/1     Running   0          2m36s
 
-### Get services
+#### Get services
 ```bash
-$ kubectl get services -n nairobijvm
+$ kubectl get services -n ns-workshop
 ```
 NAME            TYPE       CLUSTER-IP      EXTERNAL-IP   PORT(S)          AGE
+
 greetings-app   NodePort   10.104.188.88   <none>        8080:30245/TCP   19s
 
-### Test deployed app
+#### Test deployed app
 ```bash
-$ minikube service -n nairobijvm greetings-app
+$ minikube service -n ns-workshop greetings-app
 ```
 
 ## Istio
@@ -163,14 +168,14 @@ $ linkerd dashboard
 ### Injecting proxy to nairobijvm namepsace if auto-injection is disabled
 This command retrieves all of the deployments running in the nairobijvm namespace, runs the set of Kubernetes resources through inject, and finally reapplies it to the cluster.
 ```bash
-$ kubectl get -n nairobijvm deploy -o yaml \
+$ kubectl get -n ns-workshop deploy -o yaml \
   | linkerd inject - \
   | kubectl apply -f -
 ```
 
 ### Test deployed app
 ```bash
-$ minikube service -n nairobijvm greetings-app
+$ minikube service -n ns-workshop greetings-app
 $ while true; do curl http://192.168.39.9:31081/; done
 ```
 
@@ -179,12 +184,12 @@ To clean up the resources you created in your cluster:
 
 ### Delete greetings service
 ```bash
-$ kubectl delete service greetings-app -n nairobijvm
+$ kubectl delete service greetings-app -n ns-workshop
 ```
 
 ### Delete greetings deployment
 ```bash
-$ kubectl delete deployment greetings -n nairobijvm
+$ kubectl delete deployment greetings -n ns-workshop
 ```
 
 ### Packaging to Docker image and Push to a registry using gradle plugin jib
