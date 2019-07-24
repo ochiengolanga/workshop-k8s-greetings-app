@@ -1,0 +1,67 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "greetings.fullname" . }}
+  namespace: {{ .Values.namespace | default "default" }}
+  labels:
+    app.kubernetes.io/name: {{ include "greetings.name" . }}
+    helm.sh/chart: {{ include "greetings.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+    app: {{ include "greetings.name" . }}
+    version: {{ .Values.deployment.version }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: {{ include "greetings.name" . }}
+      app.kubernetes.io/instance: {{ .Release.Name }}
+      app: {{ include "greetings.name" . }}
+      version: {{ .Values.deployment.version }}
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: {{ include "greetings.name" . }}
+        app.kubernetes.io/instance: {{ .Release.Name }}
+        app: {{ include "greetings.name" . }}
+        version: {{ .Values.deployment.version }}
+    spec:
+      containers:
+        - name: {{ .Chart.Name }}
+          image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+          {{- if .Values.greetingsSalution}}
+            - name: GREETINGS_SALUTATION
+              value: {{ .Values.greetingsSalution }}
+          {{- end }}
+          ports:
+            - name: http
+              containerPort: {{ .Values.deployment.port }}
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http
+            initialDelaySeconds: {{ .Values.livenessProbe.initialDelaySeconds }}
+            periodSeconds: {{ .Values.livenessProbe.periodSeconds }}
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
+            initialDelaySeconds: {{ .Values.readinessProbe.initialDelaySeconds }}
+            periodSeconds: {{ .Values.readinessProbe.periodSeconds }}
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+    {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+    {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}

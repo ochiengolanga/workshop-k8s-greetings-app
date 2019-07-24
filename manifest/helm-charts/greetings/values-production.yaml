@@ -1,0 +1,59 @@
+# Default values for greetings.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+# namespace where to deploy application within cluster
+namespace: ns-workshop
+
+image:
+  registry: gcr.io
+  # Image name
+  repository: greetings
+  # Image tag
+  tag: 3.0.0-RELEASE
+  # Specify a imagePullPolicy
+  pullPolicy: IfNotPresent
+
+# String to partially override greetings.fullname template (will maintain the release name)
+nameOverride: ""
+# String to fully override greetings.fullname template
+fullnameOverride: ""
+
+deployment:
+  port: 8080
+  version: v3
+
+# Setting up replication by specifying number of replicas
+replicaCount: 1
+
+# Kubernetes service type
+service:
+  port: 8080
+  type: LoadBalancer
+
+# Expose greetings via ingress
+ingress:
+  enabled: false
+
+# Configure resource requests and limits
+resources: {}
+
+# Node selector (https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#nodeselector)
+nodeSelector: {}
+
+# Tolerations (https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/)
+tolerations: []
+
+# Affinity (https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#affinity-and-anti-affinity)
+affinity: {}
+
+# Greetings custom salution value
+greetingsSalution: "Wasup!"
+
+# Configure extra options for liveness and readiness probes
+livenessProbe:
+  initialDelaySeconds: 5
+  periodSeconds: 5
+readinessProbe:
+  initialDelaySeconds: 5
+  periodSeconds: 5

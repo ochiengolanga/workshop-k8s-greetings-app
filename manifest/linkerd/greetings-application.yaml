@@ -1,0 +1,48 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: ns-workshop
+  annotations:
+    linkerd.io/inject: enabled
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: greetings
+  namespace: ns-workshop
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: greetings
+  template:
+    metadata:
+      labels:
+        app: greetings
+    spec:
+      containers:
+        - name: greetings
+          image: greetings:0.0.3-SNAPSHOT
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: GREETINGS_SALUTATION
+              value: "Iz Vipi!"
+          ports:
+            - containerPort: 8080
+              name: "http"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: greetings
+  namespace: ns-workshop
+spec:
+  selector:
+    app: greetings
+  ports:
+    - name: http
+      protocol: TCP
+      port: 8080
+      targetPort: 8080
+  type: LoadBalancer
