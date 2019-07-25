@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @SpringBootApplication
@@ -25,7 +26,7 @@ public class GreetingsApplication {
 
 		@GetMapping
 		public String sayHello() {
-			return "V2: " + salutation + " The date today is " + new Date();
+			return "V1 >> " + salutation + " I Code Java Conference 2019! Its " + new Date().toString();
 		}
 	}
 

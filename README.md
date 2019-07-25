@@ -142,7 +142,7 @@ yellow-ferret-greetings-547b4d5bd9-ns828  0/1    ContainerCreating  0         1s
 
 #### Delete helm install
 ```bash
-
+$ helm delete yellow-ferret
 ```
 
 ## Istio

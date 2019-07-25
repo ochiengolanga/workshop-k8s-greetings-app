@@ -26,8 +26,8 @@ spec:
     - greetings-gateway
   http:
     - match:
-        - uri:
-            exact: /
+      - uri:
+          exact: /
       route:
         - destination:
             host: greetings

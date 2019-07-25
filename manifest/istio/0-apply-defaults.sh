@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 kubectl apply -f ./gateway.yaml
-kubectl get gateway -n ns-workshop
 kubectl apply -f ./destination-rules.yaml
-istioctl get destinationrules
+
+sleep 5
+
+kubectl get gateway -n ns-workshop
+istioctl get destinationrules -n ns-workshop
