@@ -9,7 +9,7 @@ image:
   # Image name
   repository: gcr.io/my-lab-247617/greetings
   # Image tag
-  tag: 3.0.0-RELEASE
+  tag: 3.0.1-RELEASE
   # Specify a imagePullPolicy
   pullPolicy: IfNotPresent
 
@@ -20,7 +20,7 @@ fullnameOverride: ""
 
 deployment:
   port: 8080
-  version: v3
+  version: v3.0.1
 
 # Setting up replication by specifying number of replicas
 replicaCount: 1

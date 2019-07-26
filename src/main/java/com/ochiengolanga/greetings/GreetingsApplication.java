@@ -26,7 +26,7 @@ public class GreetingsApplication {
 
 		@GetMapping
 		public String sayHello() {
-			return "V3 " + salutation + " I Code Java Conference 2019! Today's date " + LocalDate.now().toString();
+			return "V3.1 " + salutation + " I Code Java Conference 2019! Today's date " + LocalDate.now().toString();
 		}
 	}
 
