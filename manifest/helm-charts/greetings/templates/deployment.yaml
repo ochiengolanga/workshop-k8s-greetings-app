@@ -33,11 +33,11 @@ spec:
           env:
           {{- if .Values.greetingsSalution}}
             - name: GREETINGS_SALUTATION
-              value: {{ .Values.greetingsSalution }}
+              value: "{{ .Values.greetingsSalution }}"
           {{- end }}
           ports:
-            - name: http
-              containerPort: {{ .Values.deployment.port }}
+            - containerPort: {{ .Values.deployment.port }}
+              name: "http"
           livenessProbe:
             httpGet:
               path: /
