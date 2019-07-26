@@ -34,13 +34,13 @@ $ docker images
 
 Running a container from the docker image....
 ```bash
-$ docker run --name greetings-app -p 8080:8080 -d greetings
+$ docker run --name greetings-app -p 8080:8080 -d greetings:1.0.0-RELEASE
 ```
 
 or with an environment variable
 
 ```bash
-$ docker run --name greetings-app -p 8080:8080 --env GREETINGS_SALUTATION=Niaje! -d greetings
+$ docker run --name greetings-app -p 8080:8080 --env GREETINGS_SALUTATION=Niaje! -d greetings:1.0.0-RELEASE
 ```
 
 Test application....

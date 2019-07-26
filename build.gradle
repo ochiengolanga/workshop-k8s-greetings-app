@@ -43,7 +43,7 @@ jib {
 	}
 	container {
 		useCurrentTimestamp = true
-		jvmFlags = ['-Xms128m', '-Xmx256m', '-Xdebug']
+		jvmFlags = ['-Xms256m', '-Xmx512m', '-Xdebug']
 		mainClass = 'com.ochiengolanga.greetings.GreetingsApplication'
 		environment = [GREETINGS_SALUTATION:'Greetings!']
 		args = []

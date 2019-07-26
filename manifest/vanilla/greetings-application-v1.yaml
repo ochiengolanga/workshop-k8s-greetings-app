@@ -30,7 +30,7 @@ spec:
           imagePullPolicy: IfNotPresent
           env:
             - name: GREETINGS_SALUTATION
-              value: "Hi!"
+              value: "Hi"
           ports:
             - containerPort: 8080
               name: "http"
