@@ -25,7 +25,7 @@ OUTPUT=$(mktemp)
 export OUTPUT
 echo "Application cleanup may take up to one minute"
 #helm delete --purge ../greetings
-kubectl delete -n ${NAMESPACE} -f "$SCRIPTDIR/greetings-application-v1.yaml" > "${OUTPUT}" 2>&1
+kubectl delete -n ${NAMESPACE} -f "$SCRIPTDIR/greetings-application.yaml" > "${OUTPUT}" 2>&1
 kubectl delete -n ${NAMESPACE} -f "$SCRIPTDIR/greetings-application-v2.yaml" > "${OUTPUT}" 2>&1
 ret=$?
 function cleanup() {

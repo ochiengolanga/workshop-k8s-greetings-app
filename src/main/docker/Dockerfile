@@ -9,7 +9,7 @@ COPY . .
 RUN ./gradlew build -x test
 
 FROM openjdk:alpine
-ENV ARTIFACT_NAME=greetings-4.0.0-RELEASE.jar
+ENV ARTIFACT_NAME=greetings-5.0.0-RELEASE.jar
 ENV APP_HOME=/usr/app/
 ENV GREETINGS_SALUTATION=Hello
 WORKDIR $APP_HOME
