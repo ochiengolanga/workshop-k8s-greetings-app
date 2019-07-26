@@ -26,7 +26,7 @@ spec:
     spec:
       containers:
         - name: greetings
-          image: gcr.io/my-lab-247617/greetings:1.0.0-RELEASE
+          image: gcr.io/my-lab-247617/greetings:1.0.1-RELEASE
           imagePullPolicy: IfNotPresent
           env:
             - name: GREETINGS_SALUTATION
