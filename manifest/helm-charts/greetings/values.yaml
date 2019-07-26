@@ -9,7 +9,7 @@ image:
   # Image name
   repository: gcr.io/my-lab-247617/greetings
   # Image tag
-  tag: 4.0.0-RELEASE
+  tag: 5.0.0-RELEASE
   # Specify a imagePullPolicy
   pullPolicy: IfNotPresent
 
@@ -20,7 +20,7 @@ fullnameOverride: ""
 
 deployment:
   port: 8080
-  version: v4
+  version: v5
 
 # Setting up replication by specifying number of replicas
 replicaCount: 1
@@ -47,7 +47,7 @@ tolerations: []
 affinity: {}
 
 # Greetings custom salution value
-greetingsSalution: "Hi"
+greetingsSalution: "More"
 
 # Configure extra options for liveness and readiness probes
 livenessProbe:
