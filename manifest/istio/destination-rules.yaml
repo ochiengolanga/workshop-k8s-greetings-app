@@ -18,7 +18,4 @@ spec:
     - name: v4
       labels:
         version: v4
-    - name: v5
-      labels:
-        version: v5
 ---
