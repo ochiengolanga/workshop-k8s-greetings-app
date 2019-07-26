@@ -12,10 +12,10 @@ spec:
     - route:
         - destination:
             host: greetings
-            subset: v1
+            subset: v3
           weight: 50
         - destination:
             host: greetings
-            subset: v2
+            subset: v4
           weight: 50
 ---

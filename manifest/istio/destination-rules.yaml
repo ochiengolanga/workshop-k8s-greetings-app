@@ -12,4 +12,13 @@ spec:
     - name: v2
       labels:
         version: v2
+    - name: v3
+      labels:
+        version: v3
+    - name: v4
+      labels:
+        version: v4
+    - name: v5
+      labels:
+        version: v5
 ---
